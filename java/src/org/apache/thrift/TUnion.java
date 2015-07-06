@@ -43,7 +43,7 @@ public abstract class TUnion<T extends TUnion<?,?>, F extends TFieldIdEnum> impl
     setField_ = null;
     value_ = null;
   }
-  
+
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
     schemes.put(StandardScheme.class, new TUnionStandardSchemeFactory());
