@@ -28,23 +28,37 @@ import org.apache.thrift.transport.TTransport;
 
 /**
  * Protocol interface definition.
- *
+ * 抽象类
+ * 对于rpc来说，协议就是约定客户端和服务端传输的数据
+ * 针对rpc来说，传输的数据包括
+ * （1）调用方 - 客户端
+ *    1.方法的名称，包括类的名称和方法的名称
+ *    2.方法的参数，包括类型和参数值
+ *    3.一些附加的数据，比如附件，超时事件，自定义的控制信息等等
+ * （2）返回方 - 服务端
+ *    1.调用的返回码
+ *    2.返回值
+ *    3.异常信息
  */
 public abstract class TProtocol {
 
   /**
    * Prevent direct instantiation
+   *  默认构造函数，不进行使用
    */
   @SuppressWarnings("unused")
   private TProtocol() {}
 
   /**
    * Transport
+   * 将TTransport对象作为protected成员，进行关联；
+   * TTransport也是一个抽象类
    */
   protected TTransport trans_;
 
   /**
    * Constructor
+   * 以传入 TTransport 对象，构造TProtocol对象，实现协议和编解码放在一起
    */
   protected TProtocol(TTransport trans) {
     trans_ = trans;
@@ -52,10 +66,17 @@ public abstract class TProtocol {
 
   /**
    * Transport accessor
+   * 获取该协议的传输信息
    */
   public TTransport getTransport() {
     return trans_;
   }
+
+
+  //定义一系列读写消息的编解码接口
+  //包含对两大类数据的编解码
+  //（1）复杂数据结构的，如对 Message 的read、write
+  //（2）基本数据的编解码，如32、i64、String 等等
 
   /**
    * Writing methods.

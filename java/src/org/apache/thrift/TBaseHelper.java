@@ -246,14 +246,19 @@ public final class TBaseHelper {
 
   public static byte[] byteBufferToByteArray(ByteBuffer byteBuffer) {
     if (wrapsFullArray(byteBuffer)) {
+      //通过wrapsFullArray判断这个byteBufffer是否满足直接返回array的条件
       return byteBuffer.array();
     }
+    //remain = limit - position
     byte[] target = new byte[byteBuffer.remaining()];
     byteBufferToByteArray(byteBuffer, target, 0);
     return target;
   }
 
+  //对byteBuffer做一个检查，判断初始条件
   public static boolean wrapsFullArray(ByteBuffer byteBuffer) {
+    //byteBuffer.hasArray() byteBuffer特有的功能，判断这个buffer是否 null且可读写；
+    //
     return byteBuffer.hasArray()
       && byteBuffer.position() == 0
       && byteBuffer.arrayOffset() == 0
@@ -262,6 +267,7 @@ public final class TBaseHelper {
 
   public static int byteBufferToByteArray(ByteBuffer byteBuffer, byte[] target, int offset) {
     int remaining = byteBuffer.remaining();
+    //System.arratcopy
     System.arraycopy(byteBuffer.array(),
         byteBuffer.arrayOffset() + byteBuffer.position(),
         target,
