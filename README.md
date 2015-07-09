@@ -33,6 +33,7 @@ thrift 源码的结构如下：
 
 
 ### meta_data 
+### protocol
 
 对应的，thrift结构如下：
   - TProtocol 协议和编解码组件
