@@ -20,10 +20,13 @@
 package org.apache.thrift.protocol;
 
 /**
- * Helper class that encapsulates struct metadata.
- *
+ * Helper class that encapsulates(囊括) struct metadata.
+ * 传输的 TMessage 信息结构
  */
 public final class TMessage {
+
+  //初始化新message
+  //stop = 0
   public TMessage() {
     this("", TType.STOP, 0);
   }
@@ -34,6 +37,7 @@ public final class TMessage {
     seqid = s;
   }
 
+  //字段的含义？
   public final String name;
   public final byte type;
   public final int seqid;
@@ -43,6 +47,7 @@ public final class TMessage {
     return "<TMessage name:'" + name + "' type: " + type + " seqid:" + seqid + ">";
   }
 
+  //重写equal方法
   @Override
   public boolean equals(Object other) {
     if (other instanceof TMessage) {

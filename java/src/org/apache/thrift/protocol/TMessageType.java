@@ -21,7 +21,7 @@ package org.apache.thrift.protocol;
 
 /**
  * Message type constants in the Thrift protocol.
- *
+ * 故名思议，TMessage的类型包含：call、replay、exception,是在客户端和服务端之间数据交互的类型
  */
 public final class TMessageType {
   public static final byte CALL  = 1;

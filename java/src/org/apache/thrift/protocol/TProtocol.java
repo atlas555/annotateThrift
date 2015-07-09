@@ -44,7 +44,11 @@ public abstract class TProtocol {
 
   /**
    * Prevent direct instantiation
-   *  默认构造函数，不进行使用
+   *
+   *  SuppressWarnings("unused"):
+   *  屏蔽java编译中的一些警告信息。
+   *  unused这个参数是屏蔽：定义的变量在代码中并未使用且无法访问。java在编译的时候会出现这样的警告，
+   *  加上这个注解之后就是告诉编译器，忽略这些警告，编译的过程中将不会出现这种类型的警告
    */
   @SuppressWarnings("unused")
   private TProtocol() {}
@@ -73,10 +77,13 @@ public abstract class TProtocol {
   }
 
 
-  //定义一系列读写消息的编解码接口
-  //包含对两大类数据的编解码
-  //（1）复杂数据结构的，如对 Message 的read、write
-  //（2）基本数据的编解码，如32、i64、String 等等
+  /**
+   *   定义一系列读写消息的编解码接口
+   包含对两大类数据的编解码
+   （1）复杂数据结构的，如对 Message 的read、write
+   （2）基本数据的编解码，如32、i64、String 等等
+   */
+
 
   /**
    * Writing methods.
