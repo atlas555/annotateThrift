@@ -82,6 +82,8 @@ public abstract class TProtocol {
    包含对两大类数据的编解码
    （1）复杂数据结构的，如对 Message 的read、write
    （2）基本数据的编解码，如32、i64、String 等等
+
+pad
    */
 
 
